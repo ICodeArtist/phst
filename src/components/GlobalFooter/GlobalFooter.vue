@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="copyright">
       Copyright
-      <a-icon type="copyright" /> 2019 <span>海南阿斯克互联网有限公司</span>
+      <a-icon type="copyright" /> 2019 <span>海南阿斯克互联网医院有限公司</span>
     </div>
   </div>
 </template>

@@ -19,7 +19,7 @@
           <a href="_self">条款</a>
         </div>
         <div class="copyright">
-          Copyright &copy; 2019 由海南阿斯克互联网医院提供技术支持
+          Copyright &copy; 2019 由海南阿斯克互联网医院有限公司提供技术支持
         </div>
       </div>
     </div>
