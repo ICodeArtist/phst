@@ -35,14 +35,14 @@ export function getRoleList (parameter) {
 
 export function getRecipelList (parameter) {
   return axios({
-    url: '/phar/recipellist',
+    url: '/phst/recipellist',
     method: 'get',
     params: parameter
   })
 }
-export function saveRecipelPrice (parameter) {
+export function authRecipel (parameter) {
   return axios({
-    url: '/back/recipelprice',
+    url: '/back/authrecipel',
     method: 'post',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'

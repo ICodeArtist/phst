@@ -17,7 +17,7 @@
         </div>
       </a-card>
       <div v-else style="font-size: 50px;text-align: center;margin-top: 20%;">
-        欢迎进入药店平台
+        欢迎进入药师平台
       </div>
     </div>
   </page-view>

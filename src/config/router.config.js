@@ -32,7 +32,7 @@ export const asyncRouterMap = [
         name: 'recipel',
         redirect: '/recipel/list',
         component: RouteView,
-        meta: { title: '药房中心', keepAlive: true, icon: bxAnaalyse, permission: [ 'recipellist' ] },
+        meta: { title: '审核中心', keepAlive: true, icon: bxAnaalyse, permission: [ 'recipellist' ] },
         children: [
           {
             path: '/recipel/list',

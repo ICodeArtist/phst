@@ -8,14 +8,14 @@
               <a-input v-model="queryParam.sn" placeholder="输入订单号"/>
             </a-form-item>
           </a-col>
-          <a-col :md="8" :sm="24">
+          <!-- <a-col :md="8" :sm="24">
             <a-form-item label="订单状态">
               <a-select v-model="queryParam.status" placeholder="请选择" default-value="0">
                 <a-select-option value="-1">全部</a-select-option>
                 <a-select-option :value="index" v-for="(item,index) in orderstatus" :key="index">{{ item }}</a-select-option>
               </a-select>
             </a-form-item>
-          </a-col>
+          </a-col> -->
           <template v-if="advanced">
             <a-col :md="8" :sm="24">
               <a-form-item label="医生姓名">
@@ -72,18 +72,24 @@
 
       <span slot="action" slot-scope="text, record">
         <template>
-          <a @click="handleDetail(record)">药品</a>
+          <a @click="handleDetail(record)">查看药品</a>
           <a-divider type="vertical" />
-          <a @click="handleEnterPrice(record)">输入价格</a>
+          <!-- <a @click="handleEnterPrice(record)">输入价格</a>
           <a-divider type="vertical" />
-          <a @click="handleSend(record)">发货</a>
+          <a @click="handleSend(record)">发货</a> -->
           <!-- <a v-if="record.status === '2'" @click="handleEdit(record)">输入价格</a> -->
           <!-- <a-divider type="vertical" /> -->
           <!-- <a v-if="record.status === '4'" @click="handleSub(record)">发货</a> -->
         </template>
       </span>
     </s-table>
-    <a-modal title="药品信息" v-model="infovisible" @ok="hideModal" okText="确认" cancelText="取消">
+    <a-modal
+      title="药品信息"
+      v-model="infovisible"
+      @ok="hideModal"
+      okText="确认"
+      cancelText="取消"
+      :confirmLoading="confirmLoading">
       <p v-for="(item,index) in recipeldetail.drugguide" :key="index" v-if="recipeldetail.type == '1'">
         {{ item.name }}&nbsp;{{ item.spec }}&nbsp;{{ item.num }}{{ item.pack }}&nbsp;{{ item.userdo }}&nbsp;{{ item.price }}元
       </p>
@@ -95,52 +101,22 @@
         <p>{{ recipeldetail.drugguide[0].userdo }}</p>
         <p>{{ recipeldetail.drugguide[0].price }}元</p>
       </template>
-    </a-modal>
-    <a-modal
-      title="输入价格"
-      v-model="visible"
-      @ok="PriceEnter"
-      okText="确认"
-      cancelText="取消"
-      :confirmLoading="confirmLoading">
-      <template v-if="recipeldetail.type == '1'">
-        <p v-for="(item,index) in recipeldetail.drugguide" :key="index" >
-          {{ item.name }}&nbsp;{{ item.spec }}&nbsp;{{ item.num }}{{ item.pack }}&nbsp;{{ item.userdo }}&nbsp;
-          <span style="float: right;">
-            <a-input-number
-              :min="0"
-              :max="10000"
-              v-model="item.price"
-              :disabled="recipeldetail.status == 2?false:true"
-              :precision="2"
-              @change="getallamount"
-            />元
-          </span>
-        </p>
-        <p>总价{{ allamount }}</p>
-      </template>
-      <template v-else-if="recipeldetail.drugguide instanceof Array">
-        <p v-for="(item,index) in recipeldetail.drugguide[0].pers.split('|')" :key="index" >
-          {{ item }}
-        </p>
-        <p>{{ recipeldetail.drugguide[0].znum }}</p>
-        <p>{{ recipeldetail.drugguide[0].userdo }}</p>
-        <a-input-number
-          :min="0"
-          :max="10000"
-          v-model="recipeldetail.drugguide[0].price"
-          :disabled="recipeldetail.status == 2?false:true"
-          :precision="2"
-          @change="getallamount"
-        />
-      </template>
+      <p>审核
+        <a-radio-group v-model="ifpass">
+          <a-radio :value="1">通过</a-radio>
+          <a-radio :value="0">不通过</a-radio>
+        </a-radio-group>
+      </p>
+      <p>
+        <a-input addonBefore="理由" v-model="reason"/>
+      </p>
     </a-modal>
   </a-card>
 </template>
 
 <script>
 import { STable, Ellipsis } from '@/components'
-import { getRecipelList, getPca, saveRecipelPrice } from '@/api/manage'
+import { getRecipelList, getPca, authRecipel } from '@/api/manage'
 
 const statusMap = {
   0: {
@@ -171,14 +147,14 @@ export default {
   },
   data () {
     return {
+      // 审核
+      ifpass: 1,
+      reason: '',
       // 省市区
       options: [],
       // 药品信息
       recipeldetail: [],
       infovisible: false,
-      // 输入价格
-      visible: false,
-      allamount: 0,
       confirmLoading: false,
       // 高级搜索 展开/关闭
       advanced: false,
@@ -251,7 +227,7 @@ export default {
           title: '操作',
           dataIndex: 'action',
           fixed: 'right',
-          width: 200,
+          width: 120,
           scopedSlots: { customRender: 'action' }
         }
       ],
@@ -280,8 +256,24 @@ export default {
   },
   methods: {
     hideModal () {
-      this.infovisible = false
-      this.$refs.table.refresh(true)
+      const items = {
+        recid: this.recipeldetail.recid,
+        adminid: this.$store.getters.userInfo.id,
+        ifpass: this.ifpass,
+        reason: this.reason
+      }
+      this.confirmLoading = true
+      authRecipel(items).then(res => {
+        if (res.code === '0') {
+          this.$message.success('成功', 1)
+          this.$refs.table.refresh(true)
+          this.infovisible = false
+          this.confirmLoading = false
+        } else {
+          this.$message.error(res.msg, 1)
+          this.confirmLoading = false
+        }
+      })
     },
     onChange (value) {
       this.queryParam.province = value[0] || ''
@@ -290,60 +282,15 @@ export default {
     },
     handleDetail (record) {
       this.infovisible = true
+      this.ifpass = 1
+      this.reason = ''
       this.recipeldetail = record
-    },
-    handleEnterPrice (record) {
-      if (record.status !== '2') {
-        this.$error({
-          title: '提醒',
-          content: '当前订单状态不能输入价格'
-        })
-      } else {
-        this.recipeldetail = record
-        this.visible = true
-      }
-    },
-    PriceEnter () {
-      const items = {
-        recid: this.recipeldetail.recid,
-        info: this.recipeldetail.drugguide,
-        amount: this.allamount
-      }
-      this.confirmLoading = true
-      saveRecipelPrice(items).then(res => {
-        if (res.code === '0') {
-          this.$message.success('成功', 1)
-          this.$refs.table.refresh(true)
-          this.visible = false
-          this.confirmLoading = false
-        } else {
-          this.$message.success('错误', 1)
-          this.confirmLoading = false
-        }
-      })
-    },
-    handleSend (record) {
-      if (record.status !== '4') {
-        this.$error({
-          title: '提醒',
-          content: '当前订单状态不能发货'
-        })
-      } else {
-
-      }
     },
     toggleAdvanced () {
       this.advanced = !this.advanced
     },
     resetSearchForm () {
       this.queryParam = {}
-    },
-    getallamount () {
-      let a = 0
-      this.recipeldetail.drugguide.forEach(element => {
-        a += Number(element.price)
-      })
-      this.allamount = a.toFixed(2)
     }
   }
 }
