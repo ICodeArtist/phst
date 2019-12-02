@@ -45,7 +45,7 @@
           </a-upload>
         </a-form-item>
         <a-form-item
-          label="专业技术资格正面"
+          label="专业资格证书(照片面)"
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
           class="stepFormText"
@@ -63,7 +63,7 @@
           </a-upload>
         </a-form-item>
         <a-form-item
-          label="专业技术资格反面"
+          label="专业资格证书(编号面)"
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
           class="stepFormText"
