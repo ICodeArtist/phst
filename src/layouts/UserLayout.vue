@@ -8,7 +8,7 @@
           </a>
         </div>
         <div class="desc">
-          让你的医药事业腾飞
+          让您工作兼职两不误
         </div>
       </div>
 
@@ -20,6 +20,9 @@
         </div>
         <div class="copyright">
           Copyright &copy; 2019 由海南阿斯克互联网医院有限公司提供技术支持
+        </div>
+        <div>
+          ICP证：琼ICP备19003360号-1
         </div>
       </div>
     </div>
