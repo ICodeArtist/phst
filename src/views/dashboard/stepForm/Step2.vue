@@ -6,7 +6,7 @@
         <a-form-item label="身份证正面" :labelCol="labelCol" :wrapperCol="wrapperCol" class="stepFormText">
           <img style="height: 150px;" alt="example" src="https://askyisheng.oss-cn-hangzhou.aliyuncs.com/ylz.jpeg" />
           <a-upload v-decorator="['sfzzm', { rules: [{required: true, message: '身份证正面必填'}] }]" accept="image/*" name="file"
-            action="https://askapp.wxori.top/index/uploadfile" list-type="picture" @change="handleChange" :fileList="filesfzzm">
+            action="https://askapp.cloudhos.net/index/uploadfile" list-type="picture" @change="handleChange" :fileList="filesfzzm">
             <a-button>
               <a-icon type="upload" /> 点击上传 </a-button>
           </a-upload>
@@ -14,7 +14,7 @@
         <a-form-item label="身份证反面" :labelCol="labelCol" :wrapperCol="wrapperCol" class="stepFormText">
           <img style="height: 150px;" alt="example" src="https://askyisheng.oss-cn-hangzhou.aliyuncs.com/ylf.jpeg" />
           <a-upload v-decorator="['sfzfm', { rules: [{required: true, message: '身份证反面必填'}] }]" accept="image/*" name="file"
-            action="https://askapp.wxori.top/index/uploadfile" list-type="picture" @change="handleChange2" :fileList="filesfzfm">
+            action="https://askapp.cloudhos.net/index/uploadfile" list-type="picture" @change="handleChange2" :fileList="filesfzfm">
             <a-button>
               <a-icon type="upload" /> 点击上传 </a-button>
           </a-upload>
@@ -22,7 +22,7 @@
         <a-form-item label="专业资格证书(照片面)" :labelCol="labelCol" :wrapperCol="wrapperCol" class="stepFormText">
           <img style="height: 150px;" alt="example" src="https://askyisheng.oss-cn-hangzhou.aliyuncs.com/yszyzgzs1.jpeg" />
           <a-upload v-decorator="['zyjszgzm', { rules: [{required: true, message: '专业资格证书(照片面)必填'}] }]" accept="image/*"
-            name="file" action="https://askapp.wxori.top/index/uploadfile" list-type="picture" @change="handleChange3"
+            name="file" action="https://askapp.cloudhos.net/index/uploadfile" list-type="picture" @change="handleChange3"
             :fileList="filezyjszgzm">
             <a-button>
               <a-icon type="upload" /> 点击上传 </a-button>
@@ -31,7 +31,7 @@
         <a-form-item label="专业资格证书(编号面)" :labelCol="labelCol" :wrapperCol="wrapperCol" class="stepFormText">
           <img style="height: 150px;" alt="example" src="https://askyisheng.oss-cn-hangzhou.aliyuncs.com/yszyzgzs2.jpeg" />
           <a-upload v-decorator="['zyjszgfm', { rules: [{required: true, message: '专业资格证书(编号面)必填'}] }]" accept="image/*"
-            name="file" action="https://askapp.wxori.top/index/uploadfile" list-type="picture" @change="handleChange4"
+            name="file" action="https://askapp.cloudhos.net/index/uploadfile" list-type="picture" @change="handleChange4"
             :fileList="filezyjszgfm">
             <a-button>
               <a-icon type="upload" /> 点击上传 </a-button>

@@ -97,7 +97,7 @@ const vueConfig = {
     
     proxy: {
       '/api': {
-        target: 'https://askapp.wxori.top',
+        target: 'https://askapp.cloudhos.net',
         ws: false,
         changeOrigin: true,
     		pathRewrite: {

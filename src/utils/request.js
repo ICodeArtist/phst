@@ -6,7 +6,7 @@ import { VueAxios } from './axios'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 
 // 创建 axios 实例
-const base = process.env.NODE_ENV === 'production' ? 'https://askapp.wxori.top' : '/api'
+const base = process.env.NODE_ENV === 'production' ? 'https://askapp.cloudhos.net' : '/api'
 const service = axios.create({
   baseURL: base,
   timeout: 6000 // 请求超时时间
