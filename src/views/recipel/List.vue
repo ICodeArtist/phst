@@ -74,6 +74,7 @@
         <template>
           <a @click="handleDetail(record)">查看药品</a>
           <a-divider type="vertical" />
+          <a @click="gozd(record)">查看咨询指导意见</a>
           <!-- <a @click="handleEnterPrice(record)">输入价格</a>
           <a-divider type="vertical" />
           <a @click="handleSend(record)">发货</a> -->
@@ -291,6 +292,10 @@ export default {
     },
     resetSearchForm () {
       this.queryParam = {}
+    },
+    gozd (record) {
+      const href = 'https://askapp.cloudhos.net/page/recipel/zdyj.html?recid=' + record.id
+      window.open(href, '_blank')
     }
   }
 }
