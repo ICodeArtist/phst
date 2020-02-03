@@ -8,14 +8,6 @@
               <a-input v-model="queryParam.sn" placeholder="输入订单号"/>
             </a-form-item>
           </a-col>
-          <!-- <a-col :md="8" :sm="24">
-            <a-form-item label="订单状态">
-              <a-select v-model="queryParam.status" placeholder="请选择" default-value="0">
-                <a-select-option value="-1">全部</a-select-option>
-                <a-select-option :value="index" v-for="(item,index) in orderstatus" :key="index">{{ item }}</a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-col> -->
           <template v-if="advanced">
             <a-col :md="8" :sm="24">
               <a-form-item label="医生姓名">
@@ -30,13 +22,6 @@
                   changeOnSelect
                   placeholder="请选择"
                 />
-              </a-form-item>
-            </a-col>
-            <a-col :md="8" :sm="24">
-              <a-form-item label="订单类型">
-                <a-select v-model="queryParam.type" placeholder="请选择" default-value="0">
-                  <a-select-option :value="index" v-for="(item,index) in ordertype" :key="index">{{ item }}</a-select-option>
-                </a-select>
               </a-form-item>
             </a-col>
           </template>

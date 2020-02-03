@@ -30,6 +30,25 @@
       >
         <a-input v-decorator="['idnum', { rules: [{required: true, message: '身份证号码必填'}] }]"/>
       </a-form-item>
+      <a-form-item
+        label="药师类型"
+        :labelCol="labelCol"
+        :wrapperCol="wrapperCol"
+      >
+        <a-radio-group
+          v-decorator="[
+            'phsttype',
+            {
+              'initialValue':'1'
+            },]">
+          <a-radio value="1">
+            中西成药
+          </a-radio>
+          <a-radio value="2">
+            饮片
+          </a-radio>
+        </a-radio-group>
+      </a-form-item>
       <a-form-item :wrapperCol="{span: 19, offset: 5}">
         <a-button type="primary" @click="nextStep">下一步</a-button>
       </a-form-item>
@@ -58,6 +77,7 @@ export default {
         this.form.setFieldsValue({ 'realname': data.realname })
         this.form.setFieldsValue({ 'gender': data.gender })
         this.form.setFieldsValue({ 'idnum': data.idnum })
+        this.form.setFieldsValue({ 'phsttype': data.phsttype })
       }
     })
   },
