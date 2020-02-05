@@ -156,6 +156,11 @@ export default {
           width: 100
         },
         {
+          title: '用户呢称',
+          dataIndex: 'realname',
+          width: 100
+        },
+        {
           title: '患者姓名',
           dataIndex: 'nickname',
           width: 100
