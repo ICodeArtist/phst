@@ -16,7 +16,8 @@
 
       <div class="footer">
         <div class="links">
-          <a href="_self">条款</a>
+          <a href="https://askapp.cloudhos.net/page/xy/yaoshishiyong.html" target="_blank">药师使用协议</a>
+          <a href="https://askapp.cloudhos.net/page/xy/yszc.html" target="_blank">隐私政策</a>
         </div>
         <div class="copyright">
           Copyright &copy; 2019 由海南阿斯克互联网医院有限公司提供技术支持
