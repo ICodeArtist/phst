@@ -23,7 +23,7 @@
           Copyright &copy; 2019 由海南阿斯克互联网医院有限公司提供技术支持
         </div>
         <div>
-          ICP证：琼ICP备19003360号-1
+          <a href="http://www.beian.miit.gov.cn" target="_blank">琼ICP备19003360号-1</a>
         </div>
       </div>
     </div>
